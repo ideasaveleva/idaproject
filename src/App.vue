@@ -1,30 +1,40 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view/>
+	<div>
+		<router-link to="/">Home</router-link> |
+		<router-link to="/about">About</router-link>
+	</div>
+	<router-view />
 </template>
 
 <style>
+/* * {
+	border: 1px solid red;
+} */
+body {
+	background: rgba(255, 254, 251, 0.8);
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+	color: #2c3e50;
+	width: 1440px;
+	margin: 0 auto;
 }
 
-#nav {
-  padding: 30px;
+@font-face {
+	font-display: block;
+	font-family: "InterSemiBold";
+	src: url("assets/fonts/Inter-SemiBold.ttf");
 }
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+@font-face {
+	font-display: block;
+	font-family: "SourceSansProRegular";
+	src: url("assets/fonts/SourceSansPro-Regular.ttf");
 }
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+@font-face {
+	font-display: block;
+	font-family: "SourceSansProSemiBold";
+	src: url("assets/fonts/SourceSansPro-SemiBold.ttf");
 }
 </style>
