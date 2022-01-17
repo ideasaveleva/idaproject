@@ -1,10 +1,17 @@
 <template>
-	<div>
-		<router-link to="/">Home</router-link> |
-		<router-link to="/about">About</router-link>
+	<div class="navbar">
+		<router-link to="/">Idaproject</router-link> |
+		<router-link to="/element-group">Element Group</router-link> |
+		<router-link to="/test">Test</router-link>
 	</div>
 	<router-view />
 </template>
+
+
+<script>
+export default {};
+</script>
+
 
 <style>
 /* * {
@@ -20,6 +27,15 @@ body {
 	color: #2c3e50;
 	width: 1440px;
 	margin: 0 auto;
+}
+.navbar {
+	background-color: #2c3e50;
+	padding: 15px;
+	color: white;
+}
+a {
+	color: white;
+	text-decoration: none;
 }
 
 @font-face {

@@ -1,22 +1,16 @@
 <template>
 	<div class="hello">
-		<h1>{{ msg }}</h1>
+		<h1>{{ props.msg }}</h1>
 		<MyButton>
 			По умолчанию <img src="../assets/Rectangle33.png" alt="icon down" />
 		</MyButton>
 	</div>
 </template>
 
-<script>
+<script setup>
 import MyButton from "./MyButton.vue";
 
-export default {
-	name: "HelloWorld",
-	props: {
-		msg: String,
-	},
-	components: { MyButton },
-};
+const props = defineProps({ msg: String });
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

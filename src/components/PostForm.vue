@@ -15,14 +15,9 @@
 	</div>
 </template>
 
-<script>
+<script setup>
 import MyInput from "./MyInput.vue";
 import MyButton from "./MyButton.vue";
-
-export default {
-	name: "post-form",
-	components: { MyInput, MyButton },
-};
 </script>
 
 <style scoped>

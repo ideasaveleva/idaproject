@@ -1,22 +1,16 @@
 <template>
 	<div class="home">
-		<HelloWorld msg="Добавление товара" />
+		<HelloWorld :msg="msg" />
 		<ContentBlock />
 	</div>
 </template>
 
-<script>
+<script setup>
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
 import ContentBlock from "@/components/ContentBlock.vue";
 
-export default {
-	name: "Home",
-	components: {
-		HelloWorld,
-		ContentBlock,
-	},
-};
+let msg = "Добавление товара";
 </script>
 
 <style>
