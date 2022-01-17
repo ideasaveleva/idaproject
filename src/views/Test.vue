@@ -1,23 +1,25 @@
 <template>
-<div>
-  <vue-slider v-model="paneSize" label="First pane size" :min="0" :max="100">
-    <splitpanes class="default-theme" @resize="paneSize = $event[0].size" style="height: 400px">
-      <pane :size="paneSize">
-        <span>{{ paneSize }}%</span>
-      </pane>
-      <pane :size="100 - paneSize">
-        <span>{{ 100 - paneSize }}%</span>
-      </pane>
-    </splitpanes>
-</div>
+	<div>
+		<!-- <v-slider v-model="paneSize" label="First pane size" :min="0" :max="100"> -->
+		<splitpanes
+			class="default-theme"
+			@resize="paneSize = $event[0].size"
+			style="height: 400px"
+		>
+			<pane :size="paneSize">
+				<span>{{ paneSize }}%</span>
+			</pane>
+			<pane :size="100 - paneSize">
+				<span>{{ 100 - paneSize }}%</span>
+			</pane>
+		</splitpanes>
+	</div>
 </template>
 
 <script>
 import { computed, ref } from "vue";
 import { Splitpanes, Pane } from "splitpanes";
 import "splitpanes/dist/splitpanes.css";
-import VueSlider from "vue-slider-component";
-import "vue-slider-component/theme/antd.css";
 
 const data = () => ({
 	paneSize: 50,
