@@ -13,5 +13,8 @@ import ContentBlock from "@/components/ContentBlock.vue";
 let msg = "Добавление товара";
 </script>
 
+<style scoped>
+</style>
+
 <style>
 </style>

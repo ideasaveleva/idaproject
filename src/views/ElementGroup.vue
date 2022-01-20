@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="header-block">
 		<h1>
 			Тестовое задание: создать одну полоску статусного индикатора (Risk of
 			loss) с описанными ниже настройками:
@@ -14,148 +14,178 @@
 			по отношению к сегменту.
 		</p>
 	</div>
-	<!-- <div class="about" onload="onload()">
-		<span>Risk of Loss</span>
-		<div class="splitter">
-			<div id="first"></div>
-			<div id="separator"></div>
-			<div id="second"></div>
-			<div id="separator"></div>
-			<div id="third"></div>
+	<div class="about">
+		<div class="block-split">
+			<span>Risk of Loss</span>
+			<splitpanes
+				class="default-theme"
+				v-on:resize="resize_Pane($event)"
+				style="height: 30px"
+			>
+				<pane :size="paneSize_1" id="first">
+					<span class="percent-span">{{ paneSize_1 }}%</span>
+				</pane>
+				<pane :size="paneSize_2()" id="second">
+					<span class="percent-span">{{ paneSize_2() }}%</span>
+				</pane>
+				<pane :size="paneSize_3" id="third">
+					<span class="percent-span">{{ paneSize_3 }}%</span>
+				</pane>
+			</splitpanes>
+			<span>Impact of Loss</span>
+			<splitpanes
+				class="default-theme"
+				v-on:resize="resize_Pane($event)"
+				style="height: 30px"
+			>
+				<pane :size="paneSize_1" id="first">
+					<span class="percent-span">{{ paneSize_1 }}%</span>
+				</pane>
+				<pane :size="paneSize_2()" id="second">
+					<span class="percent-span">{{ paneSize_2() }}%</span>
+				</pane>
+				<pane :size="paneSize_3" id="third">
+					<span class="percent-span">{{ paneSize_3 }}%</span>
+				</pane>
+			</splitpanes>
 		</div>
-		<span>Impact of Loss</span>
-		<div class="splitter">
-			<div id="first"></div>
-			<div id="separator"></div>
-			<div id="second"></div>
-			<div id="separator"></div>
-			<div id="third"></div>
+		<div class="block-split">
+			<span>Satisfaction</span>
+			<splitpanes
+				class="default-theme"
+				v-on:resize="resize_Pane($event)"
+				style="height: 30px"
+			>
+				<pane :size="paneSize_1" id="first">
+					<span class="percent-span">{{ paneSize_1 }}%</span>
+				</pane>
+				<pane :size="paneSize_2()" id="second">
+					<span class="percent-span">{{ paneSize_2() }}%</span>
+				</pane>
+				<pane :size="paneSize_3" id="third">
+					<span class="percent-span">{{ paneSize_3 }}%</span>
+				</pane>
+			</splitpanes>
+			<span>Performance</span>
+			<splitpanes
+				class="default-theme"
+				v-on:resize="resize_Pane($event)"
+				style="height: 30px"
+			>
+				<pane :size="paneSize_1" id="first">
+					<span class="percent-span">{{ paneSize_1 }}%</span>
+				</pane>
+				<pane :size="paneSize_2()" id="second">
+					<span class="percent-span">{{ paneSize_2() }}%</span>
+				</pane>
+				<pane :size="paneSize_3" id="third">
+					<span class="percent-span">{{ paneSize_3 }}%</span>
+				</pane>
+			</splitpanes>
 		</div>
-		<span>Satisfaction</span>
-		<div class="splitter">
-			<div id="first"></div>
-			<div id="separator"></div>
-			<div id="second"></div>
-			<div id="separator"></div>
-			<div id="third"></div>
-		</div>
-		<span>Performance</span>
-		<div class="splitter">
-			<div id="first"></div>
-			<div id="separator"></div>
-			<div id="second"></div>
-			<div id="separator"></div>
-			<div id="third"></div>
-		</div>
-	</div> -->
-
-	<!-- <v-slider v-model="paneSize" label="First pane size" :min="0" :max="100"> -->
-	<div>
-		<splitpanes
-			class="default-theme"
-			v-on:resize="resize_Pane($event)"
-			style="height: 26px"
-		>
-			<pane :size="paneSize_1" id="first">
-				<span>{{ paneSize_1 }}%</span>
-			</pane>
-			<pane :size="paneSize_2" id="second">
-				<span>{{ paneSize_2 }}%</span>
-			</pane>
-
-			<pane :size="paneSize_3" id="third">
-				<span>{{ paneSize_3 }}%</span>
-			</pane>
-		</splitpanes>
 	</div>
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
+import { onMounted, onBeforeUnmount, ref } from "vue";
 import { Splitpanes, Pane } from "splitpanes";
 import "splitpanes/dist/splitpanes.css";
 
 const paneSize_1 = ref(10);
-const paneSize_2 = ref(30);
+const paneSize_3 = ref(10);
 
-const props = defineProps({ paneSize_1: Number });
+// const props = defineProps({ paneSize_1: Number });
 
-const paneSize_3 = computed(() => {
-	return 100 - paneSize_1.value - paneSize_2.value;
-});
+const paneSize_2 = () => {
+	return 100 - paneSize_3.value - paneSize_1.value;
+};
 
-function increasePaneSize_1() {
-	paneSize_1.value++;
-}
-
-// const paneSize_3 = computed(() => {
-// 	let qwe = paneSize_2 ? paneSize_2 : 40;
-// 	let percent = 100 - paneSize_1.value - qwe;
-
-// 	console.log(percent);
-// 	return percent;
-// });
+// const paneSize_2 = ref(100 - paneSize_3.value - paneSize_1.value);
 
 const resize_Pane = (event) => {
-	console.log(event);
+	let new_paneSize_1 = event[0].size;
+	if (new_paneSize_1 != paneSize_1.value) {
+		paneSize_1.value = new_paneSize_1.toFixed();
+	}
+
+	let new_paneSize_3 = event[2].size;
+	if (new_paneSize_3 != paneSize_3.value) {
+		paneSize_3.value = new_paneSize_3.toFixed();
+	}
+	// console.log(event);
 };
+
+// onMounted(() => {
+// 	document.querySelector("body").style.backgroundColor = "red";
+// });
+
+// onBeforeUnmount(() => {
+// 	document.querySelector("body").style.backgroundColor = "";
+// });
 </script>
 
-<style scoped>
+
+<!-- <style>
+.default-theme.splitpanes--vertical > .splitpanes__splitter:after,
+.default-theme .splitpanes--vertical > .splitpanes__splitter:after,
+.default-theme.splitpanes--vertical > .splitpanes__splitter:before,
+.default-theme .splitpanes--vertical > .splitpanes__splitter:before {
+	height: 20px;
+}
+</style> -->
+
+<style lang="scss" scoped>
 .about {
 	width: 834px;
 	height: 152px;
 	background: #ffffff;
 	border-radius: 3px;
-	display: flex;
-	flex-direction: row;
-	align-items: flex-start;
 	padding: 32px 24px;
 	border: 1px solid #000;
-	align-items: center;
-	flex-wrap: wrap;
-	justify-content: space-between;
 	margin: 50px auto;
-}
-span {
 	font-size: 16px;
+	color: #1a1a1a;
 	font-weight: 600;
-}
-.splitter {
-	width: 240px;
-	height: 6px;
 	display: flex;
-	margin-left: 16px;
-	margin-right: 32px;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
-#separator {
-	cursor: col-resize;
-	background: url(https://raw.githubusercontent.com/RickStrahl/jquery-resizable/master/assets/vsizegrip.png)
-		center center no-repeat #535353;
-	width: 10px;
-	height: 6px;
-	min-width: 10px;
+.percent-span {
+	display: block;
+	font-size: 15px;
+	text-align: center;
+	padding: 5px 0;
+}
+// span {
+// 	width: 107px;
+// }
+
+.splitpanes {
+	width: 274px;
+}
+
+.block-split {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 #first {
 	background-color: #45e596;
-	width: 100px;
-	height: 26px;
-	min-width: 10px;
+	height: 30px;
+	min-width: 8px;
 }
 
 #second {
 	background-color: #ffc44c;
-	width: 390px;
-	height: 26px;
-	min-width: 10px;
+	height: 30px;
+	min-width: 8px;
 }
 
 #third {
 	background-color: #ff4c4c;
-	width: 390px;
-	height: 26px;
-	min-width: 10px;
+	height: 30px;
+	min-width: 8px;
 }
 </style>

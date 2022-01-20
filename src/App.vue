@@ -1,32 +1,53 @@
 <template>
-	<div class="navbar">
-		<router-link to="/">Idaproject</router-link> |
-		<router-link to="/element-group">Element Group</router-link> |
-		<router-link to="/test">Test</router-link>
+	<!-- <div
+		class="wrap"
+		:class="{
+			'route-2': useRoute().name == 'Element Group',
+			[route_1]: useRoute().name == 'Home',
+		}"
+	> -->
+	<div class="wrap" :style="useRoute().meta.style_page">
+		<div class="container">
+			<div class="navbar">
+				<router-link to="/">Idaproject</router-link> |
+				<router-link to="/element-group">Element Group</router-link> |
+				<router-link to="/test">Test</router-link>
+			</div>
+			<router-view />
+		</div>
 	</div>
-	<router-view />
 </template>
 
 
-<script>
-export default {};
+<script setup>
+import { useRoute, useRouter } from "vue-router";
+import { ref, computed } from "vue";
 </script>
 
 
-<style>
+<style scoped>
 /* * {
 	border: 1px solid red;
 } */
+
+.wrap {
+	width: 100%;
+	height: 100vh;
+}
+
+.container {
+	/* color: #2c3e50; */
+	width: 1440px;
+	margin: 0 auto;
+}
+
 body {
-	background: rgba(255, 254, 251, 0.8);
 	box-sizing: border-box;
 	padding: 0;
 	margin: 0;
 }
 #app {
 	color: #2c3e50;
-	width: 1440px;
-	margin: 0 auto;
 }
 .navbar {
 	background-color: #2c3e50;
