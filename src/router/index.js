@@ -15,22 +15,29 @@ const routes = [
   {
     path: "/element-group",
     name: "Element Group",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     meta: {
       style_page: {
         background: "#E5E5E5",
       },
     },
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/ElementGroup.vue"),
+    component: () => import("../views/ElementGroup.vue"),
   },
   {
     path: "/test",
     name: "Test",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Test.vue"),
+    meta: {
+      style_page: {
+        background: "#E5E5E5",
+      },
+    },
+    component: () => import("../views/Test.vue"),
+    children: [
+      {
+        path: "user",
+        name: "UserTest",
+        component: () => import("../views/UserTest.vue"),
+      },
+    ],
   },
 ];
 

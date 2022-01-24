@@ -188,4 +188,7 @@ const resize_Pane = (event) => {
 	height: 30px;
 	min-width: 8px;
 }
+.fourth {
+	background: #f2f2f2;
+}
 </style>

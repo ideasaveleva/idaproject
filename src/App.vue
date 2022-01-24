@@ -11,7 +11,8 @@
 			<div class="navbar">
 				<router-link to="/">Idaproject</router-link> |
 				<router-link to="/element-group">Element Group</router-link> |
-				<router-link to="/test">Test</router-link>
+				<router-link to="/test">Test</router-link> |
+				<router-link to="/test/user">UserTest</router-link>
 			</div>
 			<router-view />
 		</div>
@@ -25,7 +26,7 @@ import { ref, computed } from "vue";
 </script>
 
 
-<style scoped>
+<style>
 /* * {
 	border: 1px solid red;
 } */
